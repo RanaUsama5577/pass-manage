@@ -1,19 +1,17 @@
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.2.0/firebase-app.js";
-import * as fbauth from "https://www.gstatic.com/firebasejs/9.2.0/firebase-auth.js";
-import * as fbstorage from "https://www.gstatic.com/firebasejs/9.2.0/firebase-storage.js";
-import * as fbfirestore from "https://www.gstatic.com/firebasejs/9.2.0/firebase-firestore.js";
-import * as realtimeDb from "https://www.gstatic.com/firebasejs/9.2.0/firebase-database.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.2/firebase-app.js";
+import * as fbauth from "https://www.gstatic.com/firebasejs/9.6.2/firebase-auth.js";
+import * as fbstorage from "https://www.gstatic.com/firebasejs/9.6.2/firebase-storage.js";
+import * as fbfirestore from "https://www.gstatic.com/firebasejs/9.6.2/firebase-firestore.js";
+import * as realtimeDb from "https://www.gstatic.com/firebasejs/9.6.2/firebase-database.js";
 
 var firebaseConfig = {
-    apiKey: "AIzaSyC88gqlhB3xYkNdVkgz6C3vz3ZPfJ7sILA",
-    authDomain: "juanblood.firebaseapp.com",
-    databaseURL: "https://juanblood-default-rtdb.firebaseio.com",
-    projectId: "juanblood",
-    storageBucket: "juanblood.appspot.com",
-    messagingSenderId: "365198124577",
-    appId: "1:365198124577:web:f89ad84b527cb1407de560",
-    measurementId: "G-M5DHQYERFW"
+    apiKey: "AIzaSyAstjsfwzZtu-dgx4cfNUROZ5o4J3rsyho",
+    authDomain: "mypasswordbookieproject-4e74a.firebaseapp.com",
+    projectId: "mypasswordbookieproject-4e74a",
+    storageBucket: "mypasswordbookieproject-4e74a.appspot.com",
+    messagingSenderId: "411634396250",
+    appId: "1:411634396250:web:20afc24108822c895b7c63"
 };
 // Initialize Firebase
 export  const app = initializeApp(firebaseConfig);

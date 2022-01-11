@@ -31,8 +31,8 @@
             border-radius: 15px;
         }
         .button.is-solid.primary-button {
-            background: #ff6958!important;
-            border-color: #ff6759!important;
+            background: #ffb655!important;
+            border-color: #ffb655!important;
             color: #fff !important;
         }
         .signin {
@@ -81,20 +81,28 @@
                             <img src="mon.png" style="width: 86px;margin-bottom: 7px;">
                             <!--Avatar-->
                             <!--Form-->
-                            <form id="login-form" method="POST" action="#" novalidate="" class="login-form">
+                            <form id="login-form" autocomplete="off" method="POST" action="#" novalidate="" class="login-form">
                                 <div class="field">
                                     <div class="control">
-                                        <input class="input email-input signin" id="login-email" type="email" placeholder="Ex: User@CompanyName.com">
+                                        <input class="input email-input signin" id="login-name" type="text" placeholder="Ex: John Doe">
                                         <div class="input-icon">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                                            <i data-feather="user"></i>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="field">
                                     <div class="control">
-                                        <input id="login-password" class="input password-input signin-pass" type="password" placeholder="●●●●●●●">
+                                        <input class="input email-input signin" id="login-email" type="email" placeholder="Ex: User@CompanyName.com">
                                         <div class="input-icon">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-lock"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                                            <i data-feather="mail"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="control">
+                                        <input autocomplete="new-password" id="login-password" class="input password-input signin-pass" type="password" placeholder="●●●●●●●">
+                                        <div class="input-icon">
+                                            <i data-feather="lock"></i>
                                         </div>
                                         <span style="color: #FE901D;" toggle="#login-password" class="p-viewer fa fa-fw fa-eye field-icon toggle-password">
                                         </span>
@@ -110,6 +118,9 @@
                                 <div class="has-text-centered">
                                     <a href="forgot-password.html">Forgot Password?</a>
                                 </div>
+                                <div class="has-text-centered">
+                                    <a href="auth-login.html">Already have a account? Login</a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -117,7 +128,7 @@
             </div>
         </div>
     </div>
-    <script src="app-assets/js/auth-login.js"></script>
+    <script src="app-assets/js/auth-signup.js"></script>
     <script src="Account/js/custom.js"></script>
     <!-- Core js -->
     <script src="Account/js/tipuedrop_content.js"></script>

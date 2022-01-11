@@ -41,17 +41,17 @@ $(async function () {
             sweetMessage("Authentication Failed!", "Please Provide Login Credentials", "warning");
             return false;
         }
-        
+        $('#login-button').addClass("btn-progress");
         //auth.setPersistence(getauth, auth.browserSessionPersistence)
         //    .then((ref) => {
         //        console.log(ref);
                 // log the user in
-                auth.signInWithEmailAndPassword(getauth, email, password).then((cred) => {
+                auth.createUserWithEmailAndPassword(getauth, email, password).then((cred) => {
                     first();
                     async function first() {
-                        $('#login-button').addClass("btn-progress");
+                        
                         var email2 = email.toLowerCase();
-                        const docRef = doc(db, "admin", email2);
+                        const docRef = doc(db, "users", email2);
                         const docSnap = await getDoc(docRef);
                         if (docSnap.exists()) {
                             var data = docSnap.data();
