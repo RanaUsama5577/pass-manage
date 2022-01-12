@@ -84,9 +84,25 @@
                             <form id="login-form" autocomplete="off" method="POST" action="#" novalidate="" class="login-form">
                                 <div class="field">
                                     <div class="control">
-                                        <input class="input email-input signin" id="login-name" type="text" placeholder="Ex: John Doe">
+                                        <input class="input email-input signin" id="login-first-name" type="text" placeholder="Enter First Name">
                                         <div class="input-icon">
                                             <i data-feather="user"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="control">
+                                        <input class="input email-input signin" id="login-last-name" type="text" placeholder="Enter Last Name">
+                                        <div class="input-icon">
+                                            <i data-feather="user"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="control">
+                                        <input class="input email-input signin" id="login-phone" type="text" placeholder="Enter Phone">
+                                        <div class="input-icon">
+                                            <i data-feather="phone"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -100,11 +116,21 @@
                                 </div>
                                 <div class="field">
                                     <div class="control">
-                                        <input autocomplete="new-password" id="login-password" class="input password-input signin-pass" type="password" placeholder="●●●●●●●">
+                                        <input autocomplete="new-password" id="login-password" class="input password-input signin-pass" type="password" placeholder="Enter Password">
                                         <div class="input-icon">
                                             <i data-feather="lock"></i>
                                         </div>
                                         <span style="color: #FE901D;" toggle="#login-password" class="p-viewer fa fa-fw fa-eye field-icon toggle-password">
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="control">
+                                        <input autocomplete="new-password" id="login-confirm-password" class="input password-input signin-pass" type="password" placeholder="Enter Confirm Password">
+                                        <div class="input-icon">
+                                            <i data-feather="lock"></i>
+                                        </div>
+                                        <span style="color: #FE901D;" toggle="#login-confirm-password" class="p-viewer fa fa-fw fa-eye field-icon toggle-password">
                                         </span>
                                     </div>
                                 </div>

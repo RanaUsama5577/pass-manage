@@ -22,10 +22,13 @@ $(async function () {
         e.preventDefault();
         const getauth = auth.getAuth();
         // get user info
-        const name = loginForm['login-name'].value;
+        const first_name = loginForm['login-first-name'].value;
+        const last_name = loginForm['login-last-name'].value;
         const email = loginForm['login-email'].value;
         const password = loginForm['login-password'].value;
-        if (email == "" || password == ""|| name == "") {
+        const confirm_password = loginForm['login-confirm-password'].value;
+        var regularExpression  =  /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/;
+        if (email == "" || password == ""|| first_name == ""|| last_name == "") {
             $('#login-email').addClass('is-invalid');
             $('#login-name').addClass('is-invalid');
             $('#login-email').addClass('is-invalid');
@@ -37,8 +40,13 @@ $(async function () {
             sweetMessage("Authentication Failed!", "Please Provide Login Credentials", "warning");
             return false;
         }
-        else if (name == "") {
-            $('#login-name').addClass('is-invalid');
+        else if (first_name == "") {
+            $('#login-first-name').addClass('is-invalid');
+            sweetMessage("Authentication Failed!", "Please Provide Login Credentials", "warning");
+            return false;
+        }
+        else if (last_name == "") {
+            $('#login-last-name').addClass('is-invalid');
             sweetMessage("Authentication Failed!", "Please Provide Login Credentials", "warning");
             return false;
         }
@@ -47,16 +55,28 @@ $(async function () {
             sweetMessage("Authentication Failed!", "Please Provide Login Credentials", "warning");
             return false;
         }
+        else if(!password.match(regularExpression)) {
+            $('#login-password').addClass('is-invalid');
+            sweetMessage("Authentication Failed!", "Password should contain atleast one uppercase,one lowercase, one number, one special character", "warning");
+            return false;
+        }
         else if (password == "") {
             $('#login-email').removeClass('is-invalid');
             $('#login-password').addClass('is-invalid');
-            $('#login-name').removeClass('is-invalid');
+            $('#login-first-name').removeClass('is-invalid');
             sweetMessage("Authentication Failed!", "Please Provide Login Credentials", "warning");
+            return false;
+        }
+        else if (password !=  confirm_password) {
+            $('#login-email').removeClass('is-invalid');
+            $('#login-password').addClass('is-invalid');
+            $('#login-first-name').removeClass('is-invalid');
+            sweetMessage("Authentication Failed!", "Password and confirm password should be equal", "warning");
             return false;
         }
         $('#login-email').removeClass('is-invalid');
         $('#login-password').removeClass('is-invalid');
-        $('#login-name').removeClass('is-invalid');
+        $('#login-first-name').removeClass('is-invalid');
         //auth.setPersistence(getauth, auth.browserSessionPersistence)
         //    .then((ref) => {
         //        console.log(ref);
@@ -72,7 +92,9 @@ $(async function () {
                             role:0,
                             user_email:email2,
                             image_url:"user_icon.jpg",
-                            name:name,
+                            first_name:first_name,
+                            last_name:last_name,
+                            phone:phone,
                             createdAt:new Date(),
                             user_uid:user.uid,
                         })
