@@ -61,9 +61,11 @@ $(async function () {
         //    .then((ref) => {
         //        console.log(ref);
                 // log the user in
-                auth.signUpWithEmailAndPassword(getauth, email, password).then((cred) => {
+                auth.createUserWithEmailAndPassword(getauth, email, password).then((cred) => {
                     first();
                     async function first() {
+                        console.log(cred.user);
+                        var user = cred.user;
                         $('#login-button').addClass("btn-progress");
                         var email2 = email.toLowerCase();
                         await setDoc(doc(db, "users", email2), {
@@ -72,7 +74,7 @@ $(async function () {
                             image_url:"user_icon.jpg",
                             name:name,
                             createdAt:new Date(),
-                            user_uid:cred.uid,
+                            user_uid:user.uid,
                         })
                         TimerSweet("Authentication Successful!", "You are signed up", "success",1500);
                         setTimeout(function () {

@@ -84,7 +84,7 @@ $("#editProfileForm").submit(function (e) {
 
 function create_reference(imageUrl, file_name) {
     var email = $('#email').val();
-    var usrRef = doc(db, "admin", email);
+    var usrRef = doc(db, "users", email);
     updateDoc(usrRef,{
         image_url: imageUrl,
     })
@@ -177,7 +177,7 @@ $("#editBasicForm").submit(function (e) {
     }
     $("#basicSbBtn").addClass('btn-progress');
 
-    var usrRef = doc(db, "admin", email);
+    var usrRef = doc(db, "users", email);
     updateDoc(usrRef,{
         name: $(this).find("#username").val(),
     })

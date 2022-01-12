@@ -17,14 +17,13 @@ $(async function () {
     var notifyIds = [];
     auth.onAuthStateChanged(getaUth, async function (user) {
         if (user) {
-            const docRef = doc(db, "admin", user.email);
+            const docRef = doc(db, "users", user.email);
             const docSnap = await getDoc(docRef);
             if (docSnap.exists()) {
                 var data = docSnap.data();
                 $('#uid').val(docSnap.id);
                 $('#email').val(docSnap.id);
                 if (data.role == 0) {
-                    notifyIds = [1, 2, 3, 4];
                     $('.user-role').html("Admin");
                     $(".imageUrl").attr('src', data.image_url);
                     $(".userImage").attr('src', data.image_url);

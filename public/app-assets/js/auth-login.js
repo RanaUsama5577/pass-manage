@@ -46,7 +46,7 @@ $(async function () {
         //    .then((ref) => {
         //        console.log(ref);
                 // log the user in
-                auth.createUserWithEmailAndPassword(getauth, email, password).then((cred) => {
+                auth.signInWithEmailAndPassword(getauth, email, password).then((cred) => {
                     first();
                     async function first() {
                         
