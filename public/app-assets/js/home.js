@@ -35,12 +35,30 @@ $(async function () {
     setDoc = exportData.setDoc;
     deleteDoc = exportData.deleteDoc;
     onSnapshot = exportData.onSnapshot;
-    //realtime
     realdb = exportData.realdb;
     ref = exportData.ref;
     get = exportData.get;
     child = exportData.child;
     onValue = exportData.onValue;
     runTransaction = exportData.runTransaction;
-})
 
+    var getaUth = auth.getAuth();
+    auth.onAuthStateChanged(getaUth, async function (user) {
+        if (user) {
+            GetPasswords(user.email);
+            $('#email').val(user.email);
+        }
+        else{
+            // $('#email').val("admin@gmail.com");
+            // createTable("admin@gmail.com");
+        }
+    })
+})
+async function GetPasswords(email) {
+    $("#table-1").DataTable().destroy();
+    $("#dataTable").html('');
+    const usersRef = collection(db, "passwords");
+    const q = query(usersRef, where("created_by","==", email));
+    const querySnapshot = await getDocs(q);
+    $('#PasswordsCount').html(querySnapshot.size);
+}

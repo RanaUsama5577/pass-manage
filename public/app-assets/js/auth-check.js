@@ -14,7 +14,6 @@ $(async function () {
     getDoc = exportData.getDoc;
     auth = exportData.auth;
     var getaUth = auth.getAuth();
-    var notifyIds = [];
     auth.onAuthStateChanged(getaUth, async function (user) {
         if (user) {
             const docRef = doc(db, "users", user.email);
@@ -27,17 +26,17 @@ $(async function () {
                     $('.user-role').html("Admin");
                     $(".imageUrl").attr('src', data.image_url);
                     $(".userImage").attr('src', data.image_url);
-                    $('#username').val(data.name);
-                    $('#username2').val(data.name);
-                    if (data.name.length > 16) {
-                        var substr = data.name.substr(0, 14)
+                    $('#username').val(data.first_name);
+                    $('#last_name').val(data.last_name);
+                    if (data.first_name.length > 16) {
+                        var substr = data.first_name.substr(0, 14)
                         $('#nav-user-name').html(substr + "..");
                     }
                     else {
-                        $('#nav-user-name').html(data.name);
+                        $('#nav-user-name').html(data.first_name);
                     }
-                    $('.userName').html(data.name);
-                    $('.user-name').html(data.name);
+                    $('.userName').html(data.first_name);
+                    $('.user-name').html(data.first_name);
                 }
                 else {
                     firebase

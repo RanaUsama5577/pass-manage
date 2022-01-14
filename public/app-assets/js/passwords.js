@@ -38,8 +38,8 @@ $(async function () {
             $('#email').val(user.email);
         }
         else{
-            $('#email').val("admin@gmail.com");
-            createTable("admin@gmail.com");
+            // $('#email').val("admin@gmail.com");
+            // createTable("admin@gmail.com");
         }
     })
 })

@@ -26,6 +26,7 @@ $(async function () {
         const last_name = loginForm['login-last-name'].value;
         const email = loginForm['login-email'].value;
         const password = loginForm['login-password'].value;
+        const phone = loginForm['login-phone'].value;
         const confirm_password = loginForm['login-confirm-password'].value;
         var regularExpression  =  /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/;
         if (email == "" || password == ""|| first_name == ""|| last_name == "") {
@@ -47,6 +48,11 @@ $(async function () {
         }
         else if (last_name == "") {
             $('#login-last-name').addClass('is-invalid');
+            sweetMessage("Authentication Failed!", "Please Provide Login Credentials", "warning");
+            return false;
+        }
+        else if (phone == "") {
+            $('#login-phone').addClass('is-invalid');
             sweetMessage("Authentication Failed!", "Please Provide Login Credentials", "warning");
             return false;
         }
