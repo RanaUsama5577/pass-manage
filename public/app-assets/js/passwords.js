@@ -30,6 +30,7 @@ $(async function () {
     addDoc = exportData.addDoc;
     setDoc = exportData.setDoc;
     storage = exportData.storage;
+    deleteDoc = exportData.deleteDoc;
 
     var getaUth = auth.getAuth();
     auth.onAuthStateChanged(getaUth, async function (user) {
@@ -85,7 +86,7 @@ async function createTable(email) {
 function showDeleteModal(doc_id) {
     $('#docId').val(doc_id);
     Swal.fire({
-        title: 'Are you sure you want to block?',
+        title: 'Are you sure you want to delete?',
         text: "",
         icon: 'warning',
         showCancelButton: true,
@@ -94,7 +95,7 @@ function showDeleteModal(doc_id) {
         confirmButtonText: 'Confirm!'
     }).then((result) => {
         if (result.isConfirmed) {
-            blockEntity();
+            deleteEntity();
         }
     })
 }
