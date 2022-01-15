@@ -166,20 +166,25 @@ function shower(type) {
 $("#editBasicForm").submit(function (e) {
     e.preventDefault();
     var email = $("#email").val();
-    if ($(this).find("#username").val() == "") {
-        sweetMessage("Warning!", "Please enter your full name", "warning", 5000);
+    if ($(this).find("#first_name").val() == "") {
+        sweetMessage("Warning!", "Please enter your first name", "warning", 5000);
         return false;
     }
-
-    else if ($(this).find("#username").val() == $('#prev-name').val()) {
-        sweetMessage("Warning!", "No changes made!", "warning", 5000);
+    else if ($(this).find("#last_name").val() == "") {
+        sweetMessage("Warning!", "Please enter your last name", "warning", 5000);
+        return false;
+    }
+    else if ($(this).find("#phone").val() == "") {
+        sweetMessage("Warning!", "Please enter your phone", "warning", 5000);
         return false;
     }
     $("#basicSbBtn").addClass('btn-progress');
 
     var usrRef = doc(db, "users", email);
     updateDoc(usrRef,{
-        name: $(this).find("#username").val(),
+        first_name: $(this).find("#first_name").val(),
+        last_name: $(this).find("#last_name").val(),
+        phone: $(this).find("#phone").val(),
     })
         .then(function (ref) {
             sweetMessage("Successfull!", "Basic details updated successfully!", "success");

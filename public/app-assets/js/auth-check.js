@@ -26,8 +26,9 @@ $(async function () {
                     $('.user-role').html("Admin");
                     $(".imageUrl").attr('src', data.image_url);
                     $(".userImage").attr('src', data.image_url);
-                    $('#username').val(data.first_name);
+                    $('#first_name').val(data.first_name);
                     $('#last_name').val(data.last_name);
+                    $('#phone').val(data.phone);
                     if (data.first_name.length > 16) {
                         var substr = data.first_name.substr(0, 14)
                         $('#nav-user-name').html(substr + "..");

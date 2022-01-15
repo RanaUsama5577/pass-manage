@@ -1,3 +1,36 @@
+.result-container {
+    background-color: rgb(175 168 168 / 40%);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+    font-size: 18px;
+    letter-spacing: 1px;
+    padding: 12px 10px;
+    height: 50px;
+    width: 100%;
+}
+.result-container #result {
+    word-wrap: break-word;
+    max-width: calc(100% - 40px);
+}
+.result-container .btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    background-color: #ffda44;
+    color: #fff;
+    font-size: 16px;
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+/*  */
+
+
 .dropdown-item:focus, .dropdown-item:hover {
     color: #ffda44;
     background-color: rgba(226, 240, 103, 0.12);
