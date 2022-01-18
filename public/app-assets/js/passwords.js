@@ -69,14 +69,18 @@ async function createTable(email) {
                 var editAction = '<a style="color: #fff;cursor:pointer;margin-right:4px;" onclick="showEditModal(\'' + doc.id + '\')" class="btn btn-primary badge-shadow"><i class="fas fa-edit"></i></a>';
                 //values
                 var values = '<input type="hidden" id="w-' + doc.id + '" value="' + website_url + '" /><input type="hidden" id="p-' + doc.id + '" value="' + password + '" /><input type="hidden" id="u-' + doc.id + '" value="' + username + '" />';
-                var row = '<tr><td>'+count+'</td><td><p class="mb-0 font-13 pdt10 text-center">' + website_url + '</p></td><td>' + username + '</td><td>' + password + '</td><td>' + created_at + '</td><td>' + editAction + action + values + '</td></tr>';
+                var row = '<tr><td>'+count+'</td><td><p class="mb-0 font-13 pdt10 text-center">' + website_url + '</p></td><td>' + username + '</td><td>' + password + '</td><td>' + editAction + action + values + '</td></tr>';
                 $('#dataTable').append(row);
             })
         }
         else {
             MixinSweet("No data to show", "", "info", 2000);
         }
-        $('#table-1').DataTable();
+        $('#table-1').DataTable({
+            dom: 'frt',
+            paging: false,
+            "ordering": false
+        });
     }
     catch (ex) {
         console.log(ex);

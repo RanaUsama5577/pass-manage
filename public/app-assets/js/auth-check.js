@@ -37,7 +37,7 @@ $(async function () {
                         $('#nav-user-name').html(data.first_name);
                     }
                     $('.userName').html(data.first_name);
-                    $('.user-name').html(data.first_name);
+                    $('.user-name').html(data.first_name + " " + data.last_name);
                 }
                 else {
                     firebase
