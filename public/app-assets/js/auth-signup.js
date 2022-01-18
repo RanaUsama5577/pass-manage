@@ -111,7 +111,7 @@ $(async function () {
                     }
                     function second() {
                         $('#login-button').removeClass("btn-progress");
-                        window.location.href = "passwords.html";
+                        window.location.href = "index.html";
                     }
                 })
                     .catch(function (error) {

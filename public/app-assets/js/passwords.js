@@ -39,8 +39,6 @@ $(async function () {
             $('#email').val(user.email);
         }
         else{
-            // $('#email').val("admin@gmail.com");
-            // createTable("admin@gmail.com");
         }
     })
 })
@@ -58,8 +56,6 @@ async function createTable(email) {
                 var data = doc.data();
                 var action = '<a style="color: #fff;cursor:pointer;" onclick="showDeleteModal(\'' + doc.id + '\')" class="btn btn-danger badge-shadow"><i class="fas fa-trash"></i></a>';
                 //created at
-                var created_at = data.created_at.toDate();
-                created_at = $.format.date(created_at, 'd-MMM-yyyy');
 
                 var website_url = data.website_url;
                 var username = data.username;
@@ -170,15 +166,12 @@ function AddPassword() {
 
 function showEditModal(doc_id) {
     $('#form_type').val('2');
-
     $('#docId').val(doc_id);
     $('#add_btn').hide();
     $('#update_btn').show();
-
     var password = $('#p-' + doc_id).val();
     var username = $('#u-' + doc_id).val();
     var website_url = $('#w-' + doc_id).val();
-
     $('#password').val(password);
     $('#username').val(username);
     $('#website_url').val(website_url);
@@ -186,11 +179,9 @@ function showEditModal(doc_id) {
 }
 function UpdatePassword() {
     var doc_id = $('#docId').val();
-
     var username = $('#username').val();
     var password = $('#password').val();
     var website_url = $('#website_url').val();
-
     if (!username.replace(/\s/g, '').length) {
         sweetMessage("Warning!", "Please Enter Name", "error", 2000);
         return false;
@@ -231,6 +222,8 @@ function passwordAnalyzeModal() {
     $('#passwordAnalyze').val("");
     $('#passwordAnalyzeModal').modal('show');
 }
+
+// Password Generator Function
 function passwordGeneratorModal() {
     $('#result').html("");
     $('#passwordGeneratorModal').modal('show');

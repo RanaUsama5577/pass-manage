@@ -30,82 +30,6 @@ $(async function () {
     setDoc = exportData.setDoc;
     storage = exportData.storage;
 })
-function changePictureModal() {
-    $('#changePictureModal').modal("show");
-}
-
-$("#editProfileForm").submit(function (e) {
-    e.preventDefault();
-    var elem = $("#editPictureBtn");
-    uid = $("#uid").val();
-    $(elem).addClass('btn-progress disabled');
-
-    if ($("#file").val() == "") {
-        sweetMessage("Warning", "Please select file", "error", 2000);
-        $(elem).removeClass('btn-progress disabled');
-    }
-    else {
-        $("#progess_section").show();
-        var file = $("#file").get(0).files[0];
-        var name = (+new Date()) + '-' + file.name;
-        var metadata = { contentType: file.type };
-        var fileName = name;
-        var storageRef = storage;
-        var ref = storageRef.ref(storageRef.getStorage(), 'images');
-        var uploadTask = storageRef.uploadBytesResumable(ref, file);
-        uploadTask.on('state_changed',
-            (snapshot) => {
-                const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                var fixval = progress.toFixed(0);
-                $("#bar").html(fixval + "%");
-                $("#bar").css('width', progress + '%').attr('aria-valuenow', progress);
-                console.log('Upload is ' + progress + '% done');
-                switch (snapshot.state) {
-                    case 'paused':
-                        console.log('Upload is paused');
-                        break;
-                    case 'running':
-                        console.log('Upload is running');
-                        break;
-                }
-            },
-            (error) => {
-                sweetMessage("Warning", error.message, "error");
-            },
-            () => {
-                storageRef.getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-                    create_reference(downloadURL, fileName);
-                    console.log('File available at', downloadURL);
-                });
-            }
-        );
-    }
-});
-
-function create_reference(imageUrl, file_name) {
-    var email = $('#email').val();
-    var usrRef = doc(db, "users", email);
-    updateDoc(usrRef,{
-        image_url: imageUrl,
-    })
-        .then(function (ref) {
-            $("#bar").css('width', '0%');
-            $("#progess_section").fadeOut("slow");
-            $("#changePictureModal").modal('hide');
-            sweetMessage("Successfull!", "Profile picture updated successfully!", "success");
-            $("#editPictureBtn").removeClass('btn-progress disabled');
-            reset_image(imageUrl);
-        })
-        .catch(function (error) {
-            sweetMessage("Warning!", error, "error", 5000);
-        });
-
-}
-
-function reset_image(url) {
-    $(".userImage").attr('src', url);
-}
-
 function change_tab(type) {
     $(".mytabs").removeClass('show');
     if (type == 1) {
@@ -117,6 +41,18 @@ function change_tab(type) {
         $("#show2").addClass('show');
         $("#tab1").hide();
         $("#tab2").show();
+    }
+}
+function shower(type) {
+    if (type == 1) {
+        $("#closer").show();
+        $("#shower").hide();
+        $("#editBasicForm").find('input').attr('disabled', false);
+    }
+    else {
+        $("#editBasicForm").find('input').attr('disabled', true);
+        $("#closer").hide();
+        $("#shower").show();
     }
 }
 
@@ -149,19 +85,6 @@ $("#editPasswordForm").submit(function (e) {
         });
     }
 });
-
-function shower(type) {
-    if (type == 1) {
-        $("#closer").show();
-        $("#shower").hide();
-        $("#editBasicForm").find('input').attr('disabled', false);
-    }
-    else {
-        $("#editBasicForm").find('input').attr('disabled', true);
-        $("#closer").hide();
-        $("#shower").show();
-    }
-}
 
 $("#editBasicForm").submit(function (e) {
     e.preventDefault();
@@ -202,17 +125,3 @@ $("#editBasicForm").submit(function (e) {
         });
 
 });
-
-function image_validation(event, elem) {
-    var file = event.target.files[0];
-    var fileType = file["type"];
-    var validImageTypes = ["image/jpeg", "image/png"];
-    if ($.inArray(fileType, validImageTypes) < 0) {
-        sweetMessage("Warning!", "Invalid file selected", "error", 5000);
-        $("#file").val('');
-    }
-    else if (file.size > 2000000) {
-        sweetMessage("Warning!", "File size must be 2 mb or less", "error", 5000);
-        $("#file").val('');
-    }
-}

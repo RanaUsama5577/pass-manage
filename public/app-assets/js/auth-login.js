@@ -82,10 +82,12 @@ $(async function () {
                     }
                     function second() {
                         $('#login-button').removeClass("btn-progress");
-                        window.location.href = "passwords.html";
+                        window.location.href = "index.html";
                     }
                 })
                     .catch(function (error) {
+                        $('#login-button').removeClass("btn-progress");
+
                         console.log(error);
                         if (error.code == "auth/user-not-found") {
                             $('#login-email').addClass("is-invalid");
