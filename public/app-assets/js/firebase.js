@@ -6,12 +6,7 @@ import * as fbfirestore from "https://www.gstatic.com/firebasejs/9.6.2/firebase-
 import * as realtimeDb from "https://www.gstatic.com/firebasejs/9.6.2/firebase-database.js";
 
 var firebaseConfig = {
-    apiKey: "AIzaSyAstjsfwzZtu-dgx4cfNUROZ5o4J3rsyho",
-    authDomain: "mypasswordbookieproject-4e74a.firebaseapp.com",
-    projectId: "mypasswordbookieproject-4e74a",
-    storageBucket: "mypasswordbookieproject-4e74a.appspot.com",
-    messagingSenderId: "411634396250",
-    appId: "1:411634396250:web:20afc24108822c895b7c63"
+    
 };
 // Initialize Firebase
 export  const app = initializeApp(firebaseConfig);
