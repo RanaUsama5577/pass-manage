@@ -19,7 +19,7 @@ function forgotPassword() {
     if (email != "") {
         auth.sendPasswordResetEmail(auth.getAuth(),email)
             .then(function () {
-                sweetMessage("Success!", "Password reset email sent to your mail id", "success");
+                sweetMessage("Check your email to reset your password");
                 $('#login-email').val("");
             })
             .catch(function (error) {
