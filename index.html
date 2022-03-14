@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html class="loading" lang="en" data-textdirection="ltr">
+  <!-- BEGIN: Head-->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0,minimal-ui">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="Password Manager">
+    <title>Password Manager</title>
+    <link rel="apple-touch-icon" href="mon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="mon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600" rel="stylesheet">
+
+    <!-- BEGIN: Vendor CSS-->
+    <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/vendors.min.css">
+    <!-- END: Vendor CSS-->
+    <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/tables/datatable/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/tables/datatable/responsive.bootstrap5.min.css">
+    <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/tables/datatable/buttons.bootstrap5.min.css">
+    <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/tables/datatable/rowGroup.bootstrap5.min.css">
+    <!-- BEGIN: Theme CSS-->
+    <link rel="stylesheet" type="text/css" href="app-assets/css/bootstrap.min.css">
+    <!-- DataTables -->
+    
+    
+    <link rel="stylesheet" type="text/css" href="app-assets/css/bootstrap-extended.min.css">
+    <link rel="stylesheet" type="text/css" href="app-assets/css/colors.min.css">
+    <link rel="stylesheet" type="text/css" href="app-assets/css/components.min.css">
+    <link rel="stylesheet" type="text/css" href="app-assets/css/themes/dark-layout.min.css">
+    <link rel="stylesheet" type="text/css" href="app-assets/css/themes/bordered-layout.min.css">
+    <link rel="stylesheet" type="text/css" href="app-assets/css/themes/semi-dark-layout.min.css">
+
+    <!-- BEGIN: Page CSS-->
+    <link rel="stylesheet" type="text/css" href="app-assets/css/core/menu/menu-types/vertical-menu.min.css">
+    <!-- END: Page CSS-->
+
+    <!-- BEGIN: Custom CSS-->
+    <link rel="stylesheet" type="text/css" href="app-assets/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <link href="app-assets/css/custom.css" rel="stylesheet" />
+
+    <link href="app-assets/pwd_strength/pwd_strength.css" rel="stylesheet" />
+    <!-- BEGIN: Vendor JS-->
+    <script src="app-assets/vendors/js/vendors.min.js"></script>
+    <script type="module" src="app-assets/js/firebase.js"></script>
+    <!-- END: Custom CSS-->
+  </head>
+  <!-- END: Head-->
+
+  <!-- BEGIN: Body-->
+  <body class="vertical-layout vertical-menu-modern  navbar-floating footer-static  " data-open="click" data-menu="vertical-menu-modern" data-col="">
+    <div class="loader">
+
+    </div>
+    <div class="header-navbar navbar navbar-expand-lg align-items-center floating-nav  container-xxl">
+      <div class="navbar-container d-flex content">
+          <div class="">
+              <ul class="nav navbar-nav d-xl-none">
+                  <li class="nav-item"><a class="nav-link menu-toggle" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu ficon"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></a></li>
+              </ul>
+          </div>
+      </div>
+    </div>
+    <!-- BEGIN: Main Menu-->
+    <div class="main-menu menu-fixed menu-dark menu-accordion menu-shadow" data-scroll-to-active="true">
+      <div class="navbar-header">
+        <ul class="nav navbar-nav flex-row">
+            <li class="nav-item me-auto">
+                <a class="navbar-brand" href="index.html">
+                    <h2 class="brand-text">My Password Bookie</h2>
+                </a>
+            </li>
+            <!-- <li class="nav-item nav-toggle">
+                <a class="nav-link modern-nav-toggle pe-0" data-bs-toggle="collapse">
+                    <i class="d-block d-xl-none text-primary toggle-icon font-medium-4" data-feather="x"></i>
+                    <i class="d-none d-xl-block collapse-toggle-icon font-medium-4  text-primary" data-feather="disc" data-ticon="disc"></i>
+                </a>
+            </li> -->
+        </ul>
+      </div>
+      <div class="shadow-bottom"></div>
+      <div class="main-menu-content">
+        <div class="sidebar-user" style="display: inline-block;width: 100%;padding: 10px;text-align: center;">
+          <div class="sidebar-user-details">
+              <div class="user-name">Admin</div>
+          </div>
+        </div>
+        <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
+          <li class="nav-item">
+            <a class="d-flex align-items-center" href="index.html">
+                <span class="menu-title text-truncate" data-i18n="Passwords">
+                    Passwords
+                </span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="d-flex align-items-center" href="myprofile.html">
+                <span class="menu-title text-truncate" data-i18n="My Profile">
+                    My Profile
+                </span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="d-flex align-items-center" onclick="logout()">
+                <span class="menu-title text-truncate" data-i18n="Logout">
+                    Logout
+                </span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!-- END: Main Menu-->
+    <!-- BEGIN: Content-->
+    <div class="app-content content ">
+      <div class="content-overlay"></div>
+      <div class="header-navbar-shadow"></div>
+      <div class="content-wrapper container-xxl p-0">
+        <div class="content-header row">
+        </div>
+        <div class="content-body">
+            <section id="basic-datatable">
+              <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div style="justify-content: flex-start;" class="card-header border-bottom p-1">
+                            <button id="BackButton" style="color: #fff;margin-right: 12px;display:none;border-radius: 4px;" onclick="BackFunction()" class="btn btn-warning badge-shadow"><i class="fas fa-arrow-alt-circle-left"></i></button>
+                            <div class="dt-action-buttons text-center" style="margin-left: auto;margin-right: auto;">
+                              <div class="dt-buttons d-inline-flex">
+                                <button onclick="showAddModal()" class="dt-button create-new btn btn-primary" style="margin-right: 9px;" type="button"><span><i class="plus"></i>Add Password</span></button>
+                                <button onclick="passwordAnalyzeModal()" class="dt-button create-new btn btn-primary" style="margin-right: 9px;" type="button"><span><i class="plus"></i>Password Analyzer</span></button>
+                                <button onclick="passwordGeneratorModal()" class="dt-button create-new btn btn-primary" type="button"><span><i class="plus"></i>Password Generator</span></button>
+                              </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                          <div class="table-responsive">
+                            <table id="table-1" class="datatables-basic dt-responsive table">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Website Url</th>
+                                        <th>Username</th>
+                                        <th>Password</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="dataTable">
+
+                                </tbody>
+                            </table>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-lg" role="document">
+                      <div class="modal-content">
+                          <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLabel">Passwords</h5>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                              </button>
+                          </div>
+                          <div class="modal-body">
+                              <input type="hidden" id="form_type" />
+                              <div class="row">
+                                  <div class="col-md-6">
+                                      <div class="form-group">
+                                          <label>Username or Email</label>
+                                          <input type="text" maxlength="32" class="form-control" placeholder="Enter Username or Email" id="username" />
+                                      </div>
+                                  </div>
+                                  <div class="col-md-6">
+                                      <div class="form-group">
+                                          <label>Password</label>
+                                          <input type="text" maxlength="32" class="form-control" placeholder="Enter Password" id="password" />
+                                      </div>
+                                  </div>
+                                  <div class="col-md-6">
+                                      <div class="form-group">
+                                          <label>Website Url</label>
+                                          <input type="text" maxlength="100" class="form-control" placeholder="Enter Website Url" id="website_url" />
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="modal-footer bg-whitesmoke br">
+                              <a class="btn btn-secondary" data-bs-dismiss="modal">Close</a>
+                              <button type="submit" onclick="AddPassword()" id="add_btn" class="btn btn-success"><i style="margin-right:4px;" class="fa fa-check-circle"></i>Submit</button>
+                              <button type="submit" onclick="UpdatePassword()" id="update_btn" class="btn btn-success"><i style="margin-right:4px;" class="fa fa-check-circle"></i>Submit</button>
+                          </div>
+                      </div>
+                  </div>
+                </div>
+                <div class="modal fade" id="passwordAnalyzeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                          <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLabel">Password Analyzer</h5>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                              </button>
+                          </div>
+                          <div class="modal-body">
+                              <div class="row">
+                                  <div class="col-md-6">
+                                      <div class="form-group">
+                                          <label>Password</label>
+                                          <input type="text" maxlength="32" class="form-control" data-indicator="pwindicator" placeholder="Enter Password" id="passwordAnalyze" />
+                                          <div id="pwindicator" class="pwindicator">
+                                            <div class="bar"></div>
+                                            <div class="label"></div>
+                                          </div>  
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="modal-footer bg-whitesmoke br">
+                              <a class="btn btn-secondary" data-bs-dismiss="modal">Close</a>
+                          </div>
+                      </div>
+                  </div>
+                </div>
+                <div class="modal fade" id="passwordGeneratorModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                          <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLabel">Password Analyzer</h5>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                              </button>
+                          </div>
+                          <div class="modal-body">
+                              <div class="row">
+                                  <div class="col-md-12">
+                                    <div class="result-container">
+                                      <span id="result"></span>
+                                    </div>
+                                  </div>
+                                  <div class="col-md-12">
+                                    <div class="form-group">
+                                      <label>Length</label>
+                                      <input type="text" value="8" maxlength="32" class="form-control number_valid" placeholder="Enter Length" id="length" />
+                                    </div>
+                                  </div>
+                                  <div class="col-md-6">
+                                    <div class="form-group form-box checkbox clearfix">
+                                      <div class="form-check checkbox-theme">
+                                          <input class="form-check-input" type="checkbox" checked value="" id="uppercase">
+                                          <label class="form-check-label form-optional" for="uppercase">
+                                              Allow Uppercase
+                                          </label>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="col-md-6">
+                                    <div class="form-group form-box checkbox clearfix">
+                                      <div class="form-check checkbox-theme">
+                                          <input class="form-check-input" type="checkbox" checked value="" id="lowercase">
+                                          <label class="form-check-label form-optional" for="lowercase">
+                                              Allow Lowercase
+                                          </label>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="col-md-6">
+                                    <div class="form-group form-box checkbox clearfix">
+                                      <div class="form-check checkbox-theme">
+                                          <input class="form-check-input" type="checkbox" value="" id="numbers">
+                                          <label class="form-check-label form-optional" for="numbers">
+                                              Allow Numbers
+                                          </label>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="col-md-6">
+                                    <div class="form-group form-box checkbox clearfix">
+                                      <div class="form-check checkbox-theme">
+                                          <input class="form-check-input" type="checkbox" value="" id="symbols">
+                                          <label class="form-check-label form-optional" for="symbols">
+                                              Allow Symbols
+                                          </label>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="col-md-12">
+                                    <button id="generate" class="dt-button create-new btn btn-primary" type="button"><span>Generate</span></button>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="modal-footer bg-whitesmoke br">
+                              <a class="btn btn-secondary" data-bs-dismiss="modal">Close</a>
+                          </div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+        </div>
+      </div>
+    </div>
+    <input type="hidden" id="email" value="" />
+    <input type="hidden" id="docId" value="" />
+    <!-- END: Content-->
+
+    <div class="sidenav-overlay"></div>
+    <div class="drag-target"></div>
+
+    <button class="btn btn-primary btn-icon scroll-top" type="button"><i data-feather="arrow-up"></i></button>
+    <!-- END: Footer-->
+    <!-- BEGIN Vendor JS-->
+
+    <!-- BEGIN: Page Vendor JS-->
+    <script src="app-assets/vendors/js/extensions/toastr.min.js"></script>
+    <!-- END: Page Vendor JS-->
+
+    <!-- BEGIN: Theme JS-->
+    <script src="app-assets/js/core/app-menu.min.js"></script>
+    <script src="app-assets/js/core/app.min.js"></script>
+    <script src="app-assets/js/scripts/customizer.min.js"></script>
+    <!-- END: Theme JS-->
+
+    <!-- BEGIN: Page JS-->
+    <script src="app-assets/js/custom.js"></script>
+    <script src="app-assets/js/auth-check.js"></script>
+    <script src="app-assets/js/passwords.js"></script>
+    <script src="app-assets/js/logout.js"></script>
+    <script src="app-assets/vendors/js/tables/datatable/jquery.dataTables.min.js"></script>
+    <script src="app-assets/vendors/js/tables/datatable/dataTables.bootstrap5.min.js"></script>
+    <script src="app-assets/vendors/js/tables/datatable/dataTables.responsive.min.js"></script>
+    <script src="app-assets/vendors/js/tables/datatable/responsive.bootstrap5.min.js"></script>
+    <script src="app-assets/vendors/js/tables/datatable/datatables.checkboxes.min.js"></script>
+    <script src="app-assets/vendors/js/tables/datatable/datatables.buttons.min.js"></script>
+    <script src="app-assets/vendors/js/tables/datatable/buttons.html5.min.js"></script>
+    <script src="app-assets/vendors/js/tables/datatable/buttons.print.min.js"></script>
+    <script src="app-assets/vendors/js/tables/datatable/dataTables.rowGroup.min.js"></script>
+    <script src="app-assets/pwd_strength/pwtstrength.min.js"></script>
+    <!-- END: Page JS-->
+
+    <script>
+      $(window).on('load',  function(){
+        if (feather) {
+          feather.replace({ width: 14, height: 14 });
+        }
+      })
+      $(function () {
+            $("#passwordAnalyze").pwstrength();
+        })
+    </script>
+  </body>
+  <!-- END: Body-->
+
+</html>

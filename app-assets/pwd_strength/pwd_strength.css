@@ -1,0 +1,60 @@
+﻿.pwindicator {
+    margin-top: 4px;
+    width: 100%;
+}
+.pwindicator .bar {
+    height: 2px;
+}
+
+
+.pw-very-weak .bar
+{
+    background: #d00;
+    width: 20%;
+}
+
+.pw-very-weak .label {
+    color: #d00;
+}
+
+
+.pw-weak .bar
+{
+    background: #d00;
+    width: 40%;
+}
+.pw-weak .label {
+    color: #d00;
+}
+
+
+.pw-mediocre .bar
+{
+    background: #f3f01a;
+    width: 70%;
+}
+
+.pw-mediocre .label {
+    color: #f3f01a;
+}
+
+
+.pw-strong .bar
+{
+    background: #f3b31a;
+    width: 90%;
+}
+
+.pw-strong .label {
+    color: #f3b31a;
+}
+
+
+.pw-very-strong .bar
+{
+    background: #0d0;
+    width: 100%;
+}
+.pw-very-strong .label {
+    color: #0d0;
+}
