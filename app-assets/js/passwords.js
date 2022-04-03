@@ -60,7 +60,8 @@ async function createTable(email) {
                 var website_url = data.website_url;
                 var username = data.username;
                 var password = data.password;
-
+                username = decrypt(username)
+                password = decrypt(password)
                 //Address Node
                 var editAction = '<a style="color: #fff;cursor:pointer;margin-right:4px;" onclick="showEditModal(\'' + doc.id + '\')" class="btn btn-primary badge-shadow"><i class="fas fa-edit"></i></a>';
                 //values
@@ -141,6 +142,8 @@ function AddPassword() {
     else {
         var timestamp = new Date().getTime().toString();
         $('#add_btn').addClass("btn-progress");
+        username = encrypt(username)
+        password = encrypt(password)
         // Add a new document in collection "cities"
         setDoc(doc(db, "passwords", timestamp), {
             created_at: new Date(),
@@ -197,6 +200,8 @@ function UpdatePassword() {
     else{
         $('#update_btn').addClass("btn-progress");
         var docRef = doc(db, "passwords", doc_id);
+        username = encrypt(username)
+        password = encrypt(password)
         updateDoc(docRef, {
             website_url:website_url,
             username:username,
@@ -299,4 +304,11 @@ const resultEl = document.getElementById('result'),
     const symbols = '!@#$%*&(){}[]=<>/,.';
     return symbols[Math.floor(Math.random() * symbols.length)];
   }
+  
+  const encrypt = (text) => {
+    return CryptoJS.enc.Base64.stringify(CryptoJS.enc.Utf8.parse(text));
+  };
+  const decrypt = (data) => {
+    return CryptoJS.enc.Base64.parse(data).toString(CryptoJS.enc.Utf8);
+  };
   
