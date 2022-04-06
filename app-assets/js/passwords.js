@@ -304,11 +304,15 @@ const resultEl = document.getElementById('result'),
     const symbols = '!@#$%*&(){}[]=<>/,.';
     return symbols[Math.floor(Math.random() * symbols.length)];
   }
-  
+
   const encrypt = (text) => {
-    return CryptoJS.enc.Base64.stringify(CryptoJS.enc.Utf8.parse(text));
-  };
-  const decrypt = (data) => {
-    return CryptoJS.enc.Base64.parse(data).toString(CryptoJS.enc.Utf8);
+    const passphrase = 'qwertyuiop';
+    return CryptoJS.AES.encrypt(text, passphrase).toString();
   };
   
+  const decrypt = (ciphertext) => {
+    const passphrase = 'qwertyuiop';
+    const bytes = CryptoJS.AES.decrypt(ciphertext, passphrase);
+    const originalText = bytes.toString(CryptoJS.enc.Utf8);
+    return originalText;
+  };
