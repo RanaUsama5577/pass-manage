@@ -56,7 +56,6 @@ async function createTable(email) {
                 var data = doc.data();
                 var action = '<a style="color: #fff;cursor:pointer;" onclick="showDeleteModal(\'' + doc.id + '\')" class="btn btn-danger badge-shadow"><i class="fas fa-trash"></i></a>';
                 //created at
-
                 var website_url = data.website_url;
                 var username = data.username;
                 var password = data.password;
@@ -66,7 +65,9 @@ async function createTable(email) {
                 var editAction = '<a style="color: #fff;cursor:pointer;margin-right:4px;" onclick="showEditModal(\'' + doc.id + '\')" class="btn btn-primary badge-shadow"><i class="fas fa-edit"></i></a>';
                 //values
                 var values = '<input type="hidden" id="w-' + doc.id + '" value="' + website_url + '" /><input type="hidden" id="p-' + doc.id + '" value="' + password + '" /><input type="hidden" id="u-' + doc.id + '" value="' + username + '" />';
-                var row = '<tr><td>'+count+'</td><td><p class="mb-0 font-13 pdt10 text-center">' + website_url + '</p></td><td>' + username + '</td><td>' + password + '</td><td>' + editAction + action + values + '</td></tr>';
+                var copyUsername = '<td><span id="U-'+doc.id+'">'+username+' </span><a onclick="CopyMe(this)" data-id="U-'+doc.id+'" style="color: #fff;cursor:pointer;margin-right:4px;" class="btn btn-primary badge-shadow"><div><i class="fas fa-copy"></i></div></a></td>';
+                var copyPassword = '<td><span id="p-'+doc.id+'">'+password+' </span><a onclick="CopyMe(this)" data-id="p-'+doc.id+'" style="color: #fff;cursor:pointer;margin-right:4px;" class="btn btn-primary badge-shadow"><div><i class="fas fa-copy"></i></div></a></td>';
+                var row = '<tr><td>'+count+'</td><td><p class="mb-0 font-13 pdt10 text-center">' + website_url + '</p></td>'+copyUsername+''+copyPassword+'<td>' + editAction + action + values + '</td></tr>';
                 $('#dataTable').append(row);
             })
         }
@@ -304,6 +305,31 @@ const resultEl = document.getElementById('result'),
     const symbols = '!@#$%*&(){}[]=<>/,.';
     return symbols[Math.floor(Math.random() * symbols.length)];
   }
+
+  function CopyMe(element) {
+    var s = $(element).attr('data-id');
+    var element2 = document.getElementById(s);
+    if (document.body.createTextRange) {
+        range = document.body.createTextRange();
+        range.moveToElementText(element2);
+        range.select();
+    } else if (window.getSelection) {
+        selection = window.getSelection();
+        range = document.createRange();
+        range.selectNodeContents(element2);
+        selection.removeAllRanges();
+        selection.addRange(range);
+        
+    }
+    try {
+        document.execCommand('copy');
+        MixinSweet("Text Copied", "", "info",2000);
+    }
+    catch (err) {
+        console.log(err);
+    }
+ }
+
 
   const encrypt = (text) => {
     const passphrase = 'qwertyuiop';
